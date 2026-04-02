@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hirushan Premarathna | Full-Stack Developer</title>
+  <meta name="description"
+    content="Portfolio of Hirushan Premarathna – Undergraduate ICT Student & Full-Stack Developer at Rajarata University of Sri Lanka." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ==== NAVBARa === -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <span class="flame-icon"></span>
+      <span class="logo-text"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-socials">
+      <a href="https://github.com/HirushanPremaratha" target="_blank" aria-label="GitHub"><i
+          class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/hirushanpremaratha" target="_blank" aria-label="LinkedIn"><i
+          class="fab fa-linkedin"></i></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ======== HERO ======== -->
+  <section id="home" class="hero-section">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1 class="hero-name">Hirushan Premarathna</h1>
+      <div class="hero-roles">
+        <span class="static-text">I'm a </span>
+        <span class="typed-text" id="typedText"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-desc">
+        Undergraduate ICT student at Rajarata University of Sri Lanka, passionate about
+        full-stack development, data science, IoT systems, and machine learning research.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="CV Final V1.1.pdf" class="btn-secondary" target="_blank" rel="noopener noreferrer">View CV</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse-icon">
+        <div class="mouse-wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ABOUT ======== -->
+  <section id="about" class="section about-section">
+    <h2 class="section-title reveal">About Me</h2>
+    <p class="section-subtitle reveal">Get to know me better</p>
+    <div class="about-container">
+      <div class="about-image-wrapper reveal">
+        <!-- Outer animated spinner ring -->
+        <div class="profile-spinner-ring"></div>
+        <!-- Middle ring -->
+        <div class="profile-mid-ring"></div>
+        <!-- Main profile circle -->
+        <div class="profile-ring">
+          <img src="profile.jpeg" alt="Hirushan Premarathna" class="profile-img" />
+          <!-- Hover overlay -->
+          <div class="profile-overlay">
+            <i class="fas fa-user-circle"></i>
+            <span>Full-Stack Developer</span>
+          </div>
+        </div>
+        <!-- Online badge -->
+        <div class="profile-status-badge">
+          <span class="status-dot"></span>
+          Available for Work
+        </div>
+        <!-- Orbiting tech icons -->
+        <div class="orbit-ring">
+          <div class="orbit-icon orbit-icon-1"><i class="fab fa-python"></i></div>
+          <div class="orbit-icon orbit-icon-2"><i class="fab fa-react"></i></div>
+          <div class="orbit-icon orbit-icon-3"><i class="fab fa-node-js"></i></div>
+          <div class="orbit-icon orbit-icon-4"><i class="fas fa-microchip"></i></div>
+        </div>
+        <!-- Stats strip -->
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="profile-stat">
+            <span class="stat-number">3.31</span>
+            <span class="stat-label">GPA</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <p>I'm <span class="highlight">24 years old</span> — a 4th-year undergraduate at <span
+            class="highlight">Rajarata University of Sri Lanka</span>, pursuing a <span class="highlight">B.Sc. (Hons)
+            in Information &amp; Communication Technology</span>. Alongside my studies, I serve as the <span
+            class="highlight">Proprietor of Sabaragamuwa Scales</span>, where I combine entrepreneurship with deep
+          technical expertise.</p>
+        <p>I am <span class="highlight">actively seeking a Full-Stack Developer internship</span> as part of my
+          university industrial training programme. I am proficient in <span class="highlight">Python, JavaScript, Java,
+            and PHP</span>
+          as core programming languages, with hands-on project experience across the full stack using <span
+            class="highlight">React.js, Node.js, Flask, and MySQL</span>. I bring strong problem-solving skills and a
+          proven ability to deliver working solutions under real-world constraints.</p>
+        <p>With <span class="highlight">7+ years of industry experience</span> in electronic weighing machines and a
+          current research focus on a <span class="highlight">Hybrid ML model for Landslide Susceptibility
+            Prediction</span>, I offer a rare blend of technical depth, research capability, and entrepreneurial drive.
+        </p>
+        <div class="about-cards">
+          <div class="about-card">
+            <i class="fas fa-code"></i>
+            <h4>Full-Stack Dev</h4>
+            <p>React, Node, Flask</p>
+          </div>
+          <div class="about-card">
+            <i class="fas fa-brain"></i>
+            <h4>Data Science &amp; ML</h4>
+            <p>AI &amp; Analytics</p>
+          </div>
+          <div class="about-card">
+            <i class="fas fa-microchip"></i>
+            <h4>IoT Systems</h4>
+            <p>ESP32, RFID</p>
+          </div>
+          <div class="about-card">
+            <i class="fas fa-robot"></i>
+            <h4>Robotics</h4>
+            <p>ROST Rajarata</p>
+          </div>
+        </div>
+
+        <!-- Internship CTA Banner -->
+        <div class="intern-cta">
+          <div class="intern-cta-icon"><i class="fas fa-laptop-code"></i></div>
+          <div class="intern-cta-text">
+            <h4>Open to Full-Stack Internship Opportunities</h4>
+            <p>Currently seeking an industrial training placement as part of my university degree programme. Available
+              for on-site or remote roles.</p>
+          </div>
+          <a href="#contact" class="intern-cta-btn">Let's Connect <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SKILLS ======== -->
+  <section id="skills" class="section skills-section">
+    <h2 class="section-title reveal">Skills</h2>
+    <p class="section-subtitle reveal">My Tech Stack</p>
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <h3 class="category-title"><i class="fas fa-laptop-code"></i> Languages</h3>
+        <div class="skill-items">
+          <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
+          <div class="skill-item"><i class="fab fa-java"></i><span>Java</span></div>
+          <div class="skill-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+          <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+          <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3 / Tailwind</span></div>
+          <div class="skill-item"><i class="fab fa-bootstrap"></i><span>Bootstrap</span></div>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <h3 class="category-title"><i class="fas fa-layer-group"></i> Frontend &amp; Backend</h3>
+        <div class="skill-items">
+          <div class="skill-item"><i class="fab fa-react"></i><span>React.js</span></div>
+          <div class="skill-item"><i class="fab fa-node-js"></i><span>Node.js / Express.js</span></div>
+          <div class="skill-item"><i class="fas fa-fire-alt"></i><span>Flask</span></div>
+          <div class="skill-item"><i class="fas fa-globe"></i><span>Django</span></div>
+          <div class="skill-item"><i class="fas fa-shield-alt"></i><span>REST APIs / JWT</span></div>
+          <div class="skill-item"><i class="fab fa-php"></i><span>PHP</span></div>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <h3 class="category-title"><i class="fas fa-database"></i> Databases &amp; Cloud</h3>
+        <div class="skill-items">
+          <div class="skill-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+          <div class="skill-item"><i class="fas fa-leaf"></i><span>MongoDB</span></div>
+          <div class="skill-item"><i class="fas fa-fire"></i><span>Firebase</span></div>
+          <div class="skill-item"><i class="fab fa-aws"></i><span>AWS / Docker</span></div>
+          <div class="skill-item"><i class="fab fa-git-alt"></i><span>Git / GitHub</span></div>
+          <div class="skill-item"><i class="fas fa-infinity"></i><span>DevOps Tools</span></div>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <h3 class="category-title"><i class="fas fa-brain"></i> Data &amp; AI</h3>
+        <div class="skill-items">
+          <div class="skill-item"><i class="fas fa-chart-line"></i><span>Machine Learning</span></div>
+          <div class="skill-item"><i class="fas fa-network-wired"></i><span>Deep Learning</span></div>
+          <div class="skill-item"><i class="fas fa-cubes"></i><span>NumPy / Pandas</span></div>
+          <div class="skill-item"><i class="fas fa-map"></i><span>QGIS</span></div>
+          <div class="skill-item"><i class="fas fa-comment-dots"></i><span>Prompt Engineering</span></div>
+          <div class="skill-item"><i class="fas fa-robot"></i><span>Generative AI</span></div>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <h3 class="category-title"><i class="fas fa-weight"></i> Weighing Machine Tech</h3>
+        <div class="skill-items">
+          <div class="skill-item"><i class="fas fa-tools"></i><span>Scale Repair &amp; Servicing</span></div>
+          <div class="skill-item"><i class="fas fa-code"></i><span>Scale Programming</span></div>
+          <div class="skill-item"><i class="fas fa-print"></i><span>Label &amp; Bill Printing</span></div>
+          <div class="skill-item"><i class="fas fa-industry"></i><span>Industrial Scales</span></div>
+          <div class="skill-item"><i class="fas fa-bolt"></i><span>Electronic Scale Calibration</span></div>
+          <div class="skill-item"><i class="fas fa-handshake"></i><span>Client Communication</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scale Brands -->
+    <div class="soft-skills-row reveal" style="margin-top: 1rem;">
+      <h3 class="soft-skills-title">Scale Brands Programmed</h3>
+      <div class="soft-skills-tags">
+        <span>Budry</span>
+        <span>Fashion</span>
+        <span>Alpha</span>
+        <span>Seldia</span>
+        <span>CAS</span>
+        <span>Singha Scales</span>
+        <span>Pathirana Scales</span>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="soft-skills-row reveal">
+      <h3 class="soft-skills-title">Soft Skills</h3>
+      <div class="soft-skills-tags">
+        <span>Problem Solving</span>
+        <span>Effective Communication</span>
+        <span>Adaptability</span>
+        <span>Time Management</span>
+        <span>Critical Thinking</span>
+        <span>Team Leadership</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== EXPERIENCE ======== -->
+  <section id="experience" class="section experience-section">
+    <h2 class="section-title reveal">Experience</h2>
+    <p class="section-subtitle reveal">My professional journey</p>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"><i class="fas fa-balance-scale"></i></div>
+        <div class="timeline-card left">
+          <h3>Proprietor</h3>
+          <h4 class="org-name">Sabaragamuwa Scales</h4>
+          <div class="timeline-meta">
+            <span><i class="far fa-calendar"></i> 2019 &ndash; Present &nbsp;&middot;&nbsp; 7 Years</span>
+            <span><i class="fas fa-map-marker-alt"></i> Sabaragamuwa, Sri Lanka</span>
+          </div>
+          <p>Founder and proprietor of Sabaragamuwa Scales — specialising in the repair, programming, and servicing of
+            all types of electronic weighing machines. Engaged with all registered weighing machine companies in Sri
+            Lanka. Expert in programming label and bill printing scales across multiple industry-leading brands.
+            Building strong client relationships through exceptional communication and technical service delivery.</p>
+          <div class="project-tags" style="margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+            <span>Scale Repair</span><span>Programming</span><span>Calibration</span><span>Label
+              Printing</span><span>Industrial Scales</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
+        <div class="timeline-card right">
+          <h3>Program Manager</h3>
+          <h4 class="org-name">ATIT Rajarata &ndash; Association of Technology IT</h4>
+          <div class="timeline-meta">
+            <span><i class="far fa-calendar"></i> 2025 &ndash; Present</span>
+            <span><i class="fas fa-map-marker-alt"></i> Rajarata University, Sri Lanka</span>
+          </div>
+          <p>Managing programs and initiatives for the ATIT community, promoting technology adoption, coordinating
+            events, and driving innovation across the IT student community at Rajarata University.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"><i class="fas fa-robot"></i></div>
+        <div class="timeline-card right">
+          <h3>Project Lead</h3>
+          <h4 class="org-name">ROST Rajarata &ndash; Robotic Society of Technology</h4>
+          <div class="timeline-meta">
+            <span><i class="far fa-calendar"></i> 2024 &ndash; Present</span>
+            <span><i class="fas fa-map-marker-alt"></i> Rajarata University, Sri Lanka</span>
+          </div>
+          <p>Leading robotics and automation projects at ROST Rajarata, applying IoT principles and hardware-software
+            integration to develop smart technological solutions for the university community.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"><i class="fas fa-flask"></i></div>
+        <div class="timeline-card left">
+          <h3>Undergraduate Researcher</h3>
+          <h4 class="org-name">Rajarata University of Sri Lanka</h4>
+          <div class="timeline-meta">
+            <span><i class="far fa-calendar"></i> Jan 2026 &ndash; Present</span>
+            <span><i class="fas fa-map-marker-alt"></i> Mihintale, Sri Lanka</span>
+          </div>
+          <p>Engineering a hybrid ML model (Random Forest + XGBoost) for Landslide Susceptibility Prediction. Processing
+            high-dimensional geospatial data with Scikit-learn, Pandas, NumPy, and QGIS. Evaluating performance with
+            AUC-ROC curves and F1 scores.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== PROJECTS ======== -->
+  <section id="projects" class="section projects-section">
+    <h2 class="section-title reveal">Projects</h2>
+    <p class="section-subtitle reveal">Things I've built</p>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+        <div class="project-header">
+          <h3>Smart Shopping Cart System</h3>
+          <div class="project-links">
+            <a href="https://github.com/HirushanPremaratha" target="_blank" aria-label="GitHub"><i
+                class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <p class="project-sub"><i class="far fa-calendar-alt"></i> Jul 2025 &ndash; Sep 2025 &nbsp;|&nbsp; Rajarata
+          University</p>
+        <p class="project-desc">IoT-enabled smart shopping cart using ESP32 and UHF RFID for automated retail.
+          Three-tier ReactJS architecture for real-time billing and QR-based payments. Servo-motor locking mechanism for
+          seamless self-checkout process.</p>
+        <div class="project-tags">
+          <span>ESP32</span><span>UHF RFID</span><span>ReactJS</span><span>Firebase</span><span>IoT</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="fas fa-cash-register"></i></div>
+        <div class="project-header">
+          <h3>Point of Sales System</h3>
+          <div class="project-links">
+            <a href="https://github.com/HirushanPremaratha" target="_blank" aria-label="GitHub"><i
+                class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <p class="project-sub"><i class="far fa-calendar-alt"></i> Dec 2023 &ndash; Nov 2024 &nbsp;|&nbsp; Rajarata
+          University</p>
+        <p class="project-desc">Robust Point of Sale system tailored for retail environments. Engineered the backend to
+          handle complex sales processing, inventory management, and reporting via a MySQL database using Java and
+          JavaFX.</p>
+        <div class="project-tags">
+          <span>Java</span><span>JavaFX</span><span>MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="fas fa-coffee"></i></div>
+        <div class="project-header">
+          <h3>Cafe Management System</h3>
+          <div class="project-links">
+            <a href="https://github.com/HirushanPremaratha" target="_blank" aria-label="GitHub"><i
+                class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <p class="project-sub"><i class="far fa-calendar-alt"></i> Feb 2023 &ndash; Nov 2023 &nbsp;|&nbsp; Rajarata
+          University</p>
+        <p class="project-desc">Web-based application to automate cafe operations including order processing, billing,
+          and inventory management. Real-time reporting and secure role-based access for staff and administrators.</p>
+        <div class="project-tags">
+          <span>HTML</span><span>CSS</span><span>PHP</span><span>JavaScript</span><span>MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <div class="project-header">
+          <h3>Landslide Susceptibility Prediction</h3>
+          <div class="project-links">
+            <a href="https://github.com/HirushanPremaratha" target="_blank" aria-label="GitHub"><i
+                class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <p class="project-sub"><i class="far fa-calendar-alt"></i> Jan 2026 &ndash; Present &nbsp;|&nbsp; Research</p>
+        <p class="project-desc">Hybrid ML model using Random Forest and XGBoost for landslide susceptibility prediction.
+          Processing high-dimensional geospatial data with feature engineering. Performance evaluated using AUC-ROC
+          curves and F1 scores.</p>
+        <div class="project-tags">
+          <span>Python</span><span>Random Forest</span><span>XGBoost</span><span>QGIS</span><span>Pandas</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== CERTIFICATIONS ======== -->
+  <section id="certifications" class="section certs-section">
+    <h2 class="section-title reveal">Certifications</h2>
+    <p class="section-subtitle reveal">Professional credentials I've earned</p>
+    <div class="certs-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fas fa-code"></i></div>
+        <div class="cert-info">
+          <h3>Trainee Full Stack Developer (Python Track)</h3>
+          <p class="cert-issuer"><i class="fas fa-university"></i> University of Moratuwa</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> Mar 2026</span>
+          <a href="certificates/CertificateOfCompletion_AI and Developer Productivity.pdf" target="_blank"
+            class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fab fa-aws"></i></div>
+        <div class="cert-info">
+          <h3>AWS Certified Advanced Networking &ndash; Specialty (ANS-C01)</h3>
+          <p class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> Mar 2026</span>
+          <a href="certificates/CertificateOfCompletion_AWS Certified Advanced Networking  Specialty ANSC01 Cert Prep (1).pdf"
+            target="_blank" class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fas fa-magic"></i></div>
+        <div class="cert-info">
+          <h3>Generative AI for Project Managers</h3>
+          <p class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> Feb 2026</span>
+          <a href="certificates/CertificateOfCompletion_Generative AI for Project Managers Fourteen Ways to Streamline Your Work.pdf"
+            target="_blank" class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fas fa-brain"></i></div>
+        <div class="cert-info">
+          <h3>Applied Machine Learning: Ensemble Learning</h3>
+          <p class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> Feb 2026</span>
+          <a href="certificates/CertificateOfCompletion_Applied Machine Learning Ensemble Learning.pdf" target="_blank"
+            class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fas fa-gem"></i></div>
+        <div class="cert-info">
+          <h3>Prompt Engineering with Gemini</h3>
+          <p class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> Feb 2026</span>
+          <a href="certificates/CertificateOfCompletion_Prompt Engineering with Gemini.pdf" target="_blank"
+            class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fas fa-infinity"></i></div>
+        <div class="cert-info">
+          <h3>AWS DevOps Best Practices for Beginners</h3>
+          <p class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> Jun 2026</span>
+          <a href="certificates/CertificateOfCompletion_AWS DevOps Best Practices for Beginners.pdf" target="_blank"
+            class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fas fa-comment-dots"></i></div>
+        <div class="cert-info">
+          <h3>Introduction to Prompt Engineering for Generative AI</h3>
+          <p class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> 2026</span>
+          <a href="certificates/CertificateOfCompletion_Introduction to Prompt Engineering for Generative AI.pdf"
+            target="_blank" class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-badge"><i class="fas fa-tasks"></i></div>
+        <div class="cert-info">
+          <h3>Project Management Foundations</h3>
+          <p class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning</p>
+          <span class="cert-date"><i class="far fa-calendar-alt"></i> 2026</span>
+          <a href="certificates/CertificateOfCompletion_Project Management Foundations (2).pdf" target="_blank"
+            class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== EDUCATION ======== -->
+  <section id="education" class="section education-section">
+    <h2 class="section-title reveal">Education</h2>
+    <p class="section-subtitle reveal">My academic background</p>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-icon"><i class="fas fa-university"></i></div>
+        <div class="edu-info">
+          <h3>Bachelor of Information Communication Technology (Hons)</h3>
+          <h4 class="edu-org">Rajarata University of Sri Lanka</h4>
+          <span class="edu-year">2022 &ndash; Expected 2027</span>
+          <div class="gpa-badge">GPA: 3.31 &nbsp;&middot;&nbsp; Credits: 73</div>
+          <p>Relevant coursework: Data Science, Fundamentals of Statistics, Artificial Intelligence, Database Systems,
+            Design and Analysis of Algorithms, Software Engineering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CONTACT ======== -->
+  <section id="contact" class="section contact-section">
+    <h2 class="section-title reveal">Let's Connect</h2>
+    <p class="section-subtitle reveal">Have a project in mind? Let's talk!</p>
+    <div class="contact-container">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:Hirushan.Premarathna@gmail.com">Hirushan.Premarathna@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+94768989178">+94 76 89 89 178</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Location</h4>
+            <span>Kegalle, Sri Lanka</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-globe"></i></div>
+          <div>
+            <h4>Website</h4>
+            <a href="http://HirushanPremarathna.com.lk" target="_blank">HirushanPremarathna.com.lk</a>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/HirushanPremaratha" target="_blank" class="social-btn" aria-label="GitHub"><i
+              class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/hirushanpremaratha" target="_blank" class="social-btn"
+            aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:Hirushan.Premarathna@gmail.com" class="social-btn" aria-label="Email"><i
+              class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <form class="contact-form reveal" id="contactForm">
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <input type="text" id="subject" placeholder="Subject" required />
+        </div>
+        <div class="form-group">
+          <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <p>Designed &amp; Built by <span class="highlight">Hirushan Premarathna</span></p>
+    <p class="footer-copy">&copy; 2026 All Rights Reserved &nbsp;&middot;&nbsp; <a
+        href="http://HirushanPremarathna.com.lk" target="_blank">HirushanPremarathna.com.lk</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
