@@ -573,18 +573,20 @@
               class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <form class="contact-form reveal" id="contactForm">
+      <form class="contact-form reveal" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Replace YOUR_WEB3FORMS_ACCESS_KEY_HERE with the key from web3forms.com -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
         <div class="form-group">
-          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
         </div>
         <div class="form-group">
-          <input type="email" id="email" placeholder="Your Email" required />
+          <input type="email" id="email" name="email" placeholder="Your Email" required />
         </div>
         <div class="form-group">
-          <input type="text" id="subject" placeholder="Subject" required />
+          <input type="text" id="subject" name="subject" placeholder="Subject" required />
         </div>
         <div class="form-group">
-          <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+          <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
         </div>
         <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
       </form>

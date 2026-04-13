@@ -215,32 +215,48 @@ navLinksContainer.querySelectorAll('a').forEach(link => {
 document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    if (!name || !email || !subject || !message) return;
-
-    const body = `Hi Hirushan,%0A%0AMy name is ${encodeURIComponent(name)} (${encodeURIComponent(email)}).%0A%0A${encodeURIComponent(message)}%0A%0ABest regards,%0A${encodeURIComponent(name)}`;
-    const mailtoLink = `mailto:Hirushan.Premarathna@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-    // Open email client
-    window.location.href = mailtoLink;
-
-    // Visual feedback
-    const btn = this.querySelector('button[type="submit"]');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
     const originalText = btn.innerHTML;
-    btn.innerHTML = 'Opening Email Client... <i class="fas fa-check"></i>';
-    btn.style.background = '#22c55e';
+
+    // Provide visual feedback while sending
+    btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
     btn.disabled = true;
 
-    setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-        this.reset();
-    }, 4000);
+    const formData = new FormData(form);
+
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json'
+        },
+        body: formData
+    })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+                btn.style.background = '#22c55e'; // Green success color
+                form.reset(); // Clear the form fields
+            } else {
+                console.log(response);
+                btn.innerHTML = 'Error Sending <i class="fas fa-times"></i>';
+                btn.style.background = '#ef4444'; // Red error color
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            btn.innerHTML = 'Error Sending <i class="fas fa-times"></i>';
+            btn.style.background = '#ef4444'; // Red error color
+        })
+        .finally(() => {
+            // Reset the button after 4 seconds
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+            }, 4000);
+        });
 });
 
 // ===========================
