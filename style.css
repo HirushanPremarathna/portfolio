@@ -10,11 +10,11 @@
 }
 
 :root {
-  /* ── Base backgrounds (deep navy blue) ── */
-  --bg-primary: #06091a;
-  --bg-secondary: #090d22;
-  --bg-card: #0d1530;
-  --bg-card-hover: #111d3e;
+  /* ── Base backgrounds (Eye-friendly dark slate) ── */
+  --bg-primary: #0f172a;
+  --bg-secondary: #020617;
+  --bg-card: #1e293b;
+  --bg-card-hover: #334155;
 
   /* ── Primary accent: Sky Cyan (buttons, headings, timeline, glow) ── */
   --accent: #0ea5e9;
@@ -28,9 +28,9 @@
   --accent-blue-glow: rgba(129, 140, 248, 0.3);
 
   /* ── Text ── */
-  --text-primary: #eef4ff;
-  --text-secondary: #9ab5d8;
-  --text-muted: #4e6a94;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
 
   /* ── Borders ── */
   --border: rgba(14, 165, 233, 0.15);
@@ -49,6 +49,7 @@
   --grid-color: rgba(14, 165, 233, 0.045);
   --grid-size: 44px;
 }
+
 
 
 html {
@@ -118,7 +119,7 @@ body::after {
   align-items: center;
   justify-content: space-between;
   padding: 0 5%;
-  background: rgba(7, 13, 26, 0.92);
+  background: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -136,6 +137,8 @@ body::after {
 
 .flame-icon {
   font-size: 1.4rem;
+  color: #ff6b00;
+  text-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
 }
 
 .logo-text {
@@ -222,6 +225,7 @@ body::after {
    =========================== */
 .section {
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 100px 8% 80px;
   position: relative;
 }
@@ -258,6 +262,7 @@ body::after {
 .hero-section {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -508,8 +513,6 @@ body::after {
   border-radius: 50%;
   clip-path: circle(50%);
   border: 3px solid var(--accent);
-  outline: 2px solid rgba(255, 255, 255, 0.12);
-  outline-offset: 3px;
   overflow: hidden;
   position: relative;
   z-index: 2;
@@ -589,7 +592,7 @@ body::after {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  background: rgba(13, 21, 48, 0.92);
+  background: rgba(30, 41, 59, 0.92);
   border: 1px solid rgba(34, 197, 94, 0.45);
   border-radius: 50px;
   padding: 0.3rem 0.9rem;
@@ -681,7 +684,7 @@ body::after {
   display: flex;
   align-items: center;
   gap: 0;
-  background: rgba(13, 21, 48, 0.88);
+  background: rgba(30, 41, 59, 0.88);
   border: 1px solid var(--border);
   border-radius: 50px;
   padding: 0.55rem 1.5rem;
@@ -1763,7 +1766,7 @@ body::after {
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.97);
+    background: rgba(15, 23, 42, 0.97);
     padding: 2rem;
     gap: 1.5rem;
   }
