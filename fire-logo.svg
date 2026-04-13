@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Fire Icon in Orange/Gold Gradient -->
+  <defs>
+    <linearGradient id="fireGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff6a00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffd700;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <path fill="url(#fireGrad)" d="M416 336c0 88.37-71.63 160-160 160S96 424.37 96 336c0-96.67 86.82-184.88 107.03-205.17 4.67-4.69 12.27-4.7 17.02-.12C264.42 173.36 290.7 205.13 300.95 220.08c1.37-18.06-2.5-35.79-9.15-51.04-3.41-7.82 4.09-15.93 12.22-13.67 36.1 10.04 77.26 40.52 95.82 78.46 16.1 32.96 16.16 67.43 16.16 102.17zM288 336a32 32 0 1 0-64 0 32 32 0 1 0 64 0z"/>
+</svg>
