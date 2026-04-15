@@ -234,10 +234,16 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
     })
         .then(async (response) => {
             let json = await response.json();
-            if (json.success) {
+            // Formsubmit returns success as string "true" or "false", not boolean
+            if (json.success === true || json.success === "true") {
                 btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
                 btn.style.background = '#22c55e';
                 form.reset();
+            } else if (json.message && json.message.includes('Activation')) {
+                // Form needs activation - show helpful message
+                btn.innerHTML = 'Activation Required <i class="fas fa-exclamation-triangle"></i>';
+                btn.style.background = '#f59e0b';
+                alert('Almost there! Please check your email (hirushan.premarathna@gmail.com) for an activation link from Formsubmit.co. Click that link once, then try sending again.');
             } else {
                 btn.innerHTML = 'Error Sending <i class="fas fa-times"></i>';
                 btn.style.background = '#ef4444';
@@ -253,7 +259,7 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
                 btn.innerHTML = originalText;
                 btn.style.background = '';
                 btn.disabled = false;
-            }, 4000);
+            }, 5000);
         });
 });
 
