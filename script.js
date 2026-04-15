@@ -225,7 +225,7 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 
     const formData = new FormData(form);
 
-    fetch('https://formsubmit.co/ajax/hirushan.premarathna@gmail.com', {
+    fetch('https://formsubmit.co/ajax/hirushan.premarathne@gmail.com', {
         method: 'POST',
         headers: {
             'Accept': 'application/json'
@@ -243,7 +243,7 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
                 // Form needs activation - show helpful message
                 btn.innerHTML = 'Activation Required <i class="fas fa-exclamation-triangle"></i>';
                 btn.style.background = '#f59e0b';
-                alert('Almost there! Please check your email (hirushan.premarathna@gmail.com) for an activation link from Formsubmit.co. Click that link once, then try sending again.');
+                alert('Almost there! Please check your email (hirushan.premarathne@gmail.com) for an activation link from Formsubmit.co. Click that link once, then try sending again.');
             } else {
                 btn.innerHTML = 'Error Sending <i class="fas fa-times"></i>';
                 btn.style.background = '#ef4444';
