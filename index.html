@@ -426,8 +426,8 @@
           <h3>Trainee Full Stack Developer (Python Track)</h3>
           <p class="cert-issuer"><i class="fas fa-university"></i> University of Moratuwa</p>
           <span class="cert-date"><i class="far fa-calendar-alt"></i> Mar 2026</span>
-          <a href="Python_for_Beginners_E-Certificate.pdf" target="_blank"
-            class="cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+          <a href="Python_for_Beginners_E-Certificate.pdf" target="_blank" class="cert-link">View Certificate <i
+              class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
 
@@ -573,9 +573,14 @@
               class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <form class="contact-form reveal" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-        <!-- Replace YOUR_WEB3FORMS_ACCESS_KEY_HERE with the key from web3forms.com -->
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+      <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/hirushan.premarathna@gmail.com"
+        method="POST">
+        <!-- Formsubmit.co settings -->
+        <input type="hidden" name="_subject" value="New message from your portfolio website!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="">
+        <input type="text" name="_honey" style="display:none">
         <div class="form-group">
           <input type="text" id="name" name="name" placeholder="Your Name" required />
         </div>
@@ -583,7 +588,7 @@
           <input type="email" id="email" name="email" placeholder="Your Email" required />
         </div>
         <div class="form-group">
-          <input type="text" id="subject" name="subject" placeholder="Subject" required />
+          <input type="text" id="subject" name="_subject" placeholder="Subject" required />
         </div>
         <div class="form-group">
           <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>

@@ -225,7 +225,7 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 
     const formData = new FormData(form);
 
-    fetch('https://api.web3forms.com/submit', {
+    fetch('https://formsubmit.co/ajax/hirushan.premarathna@gmail.com', {
         method: 'POST',
         headers: {
             'Accept': 'application/json'
@@ -234,23 +234,21 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
     })
         .then(async (response) => {
             let json = await response.json();
-            if (response.status == 200) {
+            if (json.success) {
                 btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
-                btn.style.background = '#22c55e'; // Green success color
-                form.reset(); // Clear the form fields
+                btn.style.background = '#22c55e';
+                form.reset();
             } else {
-                console.log(response);
                 btn.innerHTML = 'Error Sending <i class="fas fa-times"></i>';
-                btn.style.background = '#ef4444'; // Red error color
+                btn.style.background = '#ef4444';
             }
         })
         .catch(error => {
             console.log(error);
             btn.innerHTML = 'Error Sending <i class="fas fa-times"></i>';
-            btn.style.background = '#ef4444'; // Red error color
+            btn.style.background = '#ef4444';
         })
         .finally(() => {
-            // Reset the button after 4 seconds
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.style.background = '';
