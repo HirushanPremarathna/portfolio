@@ -5,7 +5,7 @@ const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
 let nodes = [];
-const NODE_COUNT = 55;
+const NODE_COUNT = window.innerWidth < 768 ? 20 : 55;
 const MAX_DIST = 160;
 
 function resizeCanvas() {
