@@ -61,14 +61,16 @@ function drawNetwork() {
         // Sky cyan for most nodes, indigo/violet for ~22%
         const [r, g, b] = n.isAccent ? [129, 140, 248] : [14, 165, 233];
 
-        // Glow halo
-        const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR * 3.5);
-        grd.addColorStop(0, `rgba(${r},${g},${b},0.22)`);
-        grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, glowR * 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = grd;
-        ctx.fill();
+        // Glow halo (Performance optimization: only on desktop)
+        if (window.innerWidth >= 768) {
+            const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, Math.max(1, glowR * 3.5));
+            grd.addColorStop(0, `rgba(${r},${g},${b},0.22)`);
+            grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, Math.max(1, glowR * 3.5), 0, Math.PI * 2);
+            ctx.fillStyle = grd;
+            ctx.fill();
+        }
 
         // Node core
         ctx.beginPath();
