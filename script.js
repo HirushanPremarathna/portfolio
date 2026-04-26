@@ -214,16 +214,52 @@ navLinksContainer.querySelectorAll('a').forEach(link => {
 // ===========================
 // CONTACT FORM
 // ===========================
-document.getElementById('contactForm').addEventListener('submit', function (e) {
+
+// Helper: Fetch location data and fill hidden form fields
+function fetchAndFillLocation() {
+    return fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+            if (data && !data.error) {
+                const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || 'Unknown'; };
+                setVal('senderCity', data.city);
+                setVal('senderCountry', data.country_name);
+                setVal('senderRegion', data.region);
+                setVal('senderIP', data.ip);
+                setVal('senderTimezone', data.timezone);
+                if (data.latitude && data.longitude) {
+                    setVal('senderCoords', `${data.latitude}, ${data.longitude}`);
+                    setVal('senderMapLink', `https://www.google.com/maps?q=${data.latitude},${data.longitude}`);
+                }
+            }
+        })
+        .catch(() => {
+            // If API fails, set fields to indicate failure
+            const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+            setVal('senderCity', 'Could not detect');
+            setVal('senderCountry', 'Could not detect');
+            setVal('senderRegion', 'Could not detect');
+            setVal('senderIP', 'Could not detect');
+            setVal('senderTimezone', 'Could not detect');
+        });
+}
+
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const form = e.target;
     const btn = form.querySelector('button[type="submit"]');
     const originalText = btn.innerHTML;
 
-    // Provide visual feedback while sending
-    btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+    // Show loading state
+    btn.innerHTML = 'Detecting location... <i class="fas fa-map-marker-alt fa-beat"></i>';
     btn.disabled = true;
+
+    // Step 1: Fetch fresh location data and wait for it
+    await fetchAndFillLocation();
+
+    // Step 2: Now submit the form with location data included
+    btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
 
     const formData = new FormData(form);
 
@@ -299,60 +335,8 @@ if (profileWrapper) {
 }
 
 // ===========================
-// SENDER LOCATION CAPTURE
+// PRE-FETCH LOCATION ON PAGE LOAD
 // ===========================
-// Automatically captures the visitor's location when the page loads.
-// This data is sent along with the contact form message.
-
-(function captureVisitorLocation() {
-    // 1. IP-based geolocation (city, country, region, timezone)
-    fetch('https://ipapi.co/json/')
-        .then(res => res.json())
-        .then(data => {
-            if (data && !data.error) {
-                const cityEl = document.getElementById('senderCity');
-                const countryEl = document.getElementById('senderCountry');
-                const regionEl = document.getElementById('senderRegion');
-                const ipEl = document.getElementById('senderIP');
-                const timezoneEl = document.getElementById('senderTimezone');
-                const coordsEl = document.getElementById('senderCoords');
-                const mapEl = document.getElementById('senderMapLink');
-
-                if (cityEl) cityEl.value = data.city || 'Unknown';
-                if (countryEl) countryEl.value = data.country_name || 'Unknown';
-                if (regionEl) regionEl.value = data.region || 'Unknown';
-                if (ipEl) ipEl.value = data.ip || 'Unknown';
-                if (timezoneEl) timezoneEl.value = data.timezone || 'Unknown';
-
-                // Use IP-based lat/long as fallback coordinates
-                if (data.latitude && data.longitude) {
-                    if (coordsEl) coordsEl.value = `${data.latitude}, ${data.longitude} (IP-based)`;
-                    if (mapEl) mapEl.value = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
-                }
-            }
-        })
-        .catch(() => {
-            // Silently fail — location fields will keep "Detecting..." values
-        });
-
-    // 2. Browser GPS (precise location — requires user permission)
-    if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-                const accuracy = Math.round(position.coords.accuracy);
-
-                const coordsEl = document.getElementById('senderCoords');
-                const mapEl = document.getElementById('senderMapLink');
-
-                if (coordsEl) coordsEl.value = `${lat.toFixed(6)}, ${lng.toFixed(6)} (GPS, ±${accuracy}m)`;
-                if (mapEl) mapEl.value = `https://www.google.com/maps?q=${lat},${lng}`;
-            },
-            () => {
-                // User denied permission or GPS unavailable — IP-based fallback is already set
-            },
-            { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-        );
-    }
-})();
+// Pre-fill location data when page loads (as a head start).
+// The form submit handler will fetch again to guarantee fresh data.
+fetchAndFillLocation();
