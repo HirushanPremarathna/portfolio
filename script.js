@@ -216,32 +216,51 @@ navLinksContainer.querySelectorAll('a').forEach(link => {
 // ===========================
 
 // Helper: Fetch location data and fill hidden form fields
-function fetchAndFillLocation() {
-    return fetch('https://ipapi.co/json/')
-        .then(res => res.json())
-        .then(data => {
-            if (data && !data.error) {
-                const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || 'Unknown'; };
-                setVal('senderCity', data.city);
-                setVal('senderCountry', data.country_name);
-                setVal('senderRegion', data.region);
-                setVal('senderIP', data.ip);
-                setVal('senderTimezone', data.timezone);
-                if (data.latitude && data.longitude) {
-                    setVal('senderCoords', `${data.latitude}, ${data.longitude}`);
-                    setVal('senderMapLink', `https://www.google.com/maps?q=${data.latitude},${data.longitude}`);
-                }
+async function fetchAndFillLocation() {
+    const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || 'Unknown'; };
+    
+    // 1. Get approximate IP-based location as a fast fallback
+    try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        if (data && !data.error) {
+            setVal('senderCity', data.city);
+            setVal('senderCountry', data.country_name);
+            setVal('senderRegion', data.region);
+            setVal('senderIP', data.ip);
+            setVal('senderTimezone', data.timezone);
+            if (data.latitude && data.longitude) {
+                setVal('senderCoords', `${data.latitude}, ${data.longitude} (IP Approximate)`);
+                setVal('senderMapLink', `https://www.google.com/maps?q=${data.latitude},${data.longitude}`);
             }
-        })
-        .catch(() => {
-            // If API fails, set fields to indicate failure
-            const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
-            setVal('senderCity', 'Could not detect');
-            setVal('senderCountry', 'Could not detect');
-            setVal('senderRegion', 'Could not detect');
-            setVal('senderIP', 'Could not detect');
-            setVal('senderTimezone', 'Could not detect');
+        }
+    } catch (e) {
+        console.log("IP location failed", e);
+    }
+
+    // 2. Try to get highly accurate GPS location directly from the device
+    if ('geolocation' in navigator) {
+        return new Promise((resolve) => {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    // Success! Overwrite map link with exact GPS coordinates
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    const accuracy = Math.round(position.coords.accuracy);
+
+                    setVal('senderCoords', `${lat.toFixed(6)}, ${lng.toFixed(6)} (Exact GPS, ±${accuracy}m)`);
+                    setVal('senderMapLink', `https://www.google.com/maps?q=${lat},${lng}`);
+                    resolve(); // Proceed with sending form
+                },
+                (error) => {
+                    console.log("GPS denied or failed", error);
+                    resolve(); // Proceed with sending form using IP fallback
+                },
+                { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 } // Wait max 8 seconds for user to click Allow
+            );
         });
+    }
+    return Promise.resolve();
 }
 
 document.getElementById('contactForm').addEventListener('submit', async function (e) {
