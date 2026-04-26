@@ -301,7 +301,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     const originalText = btn.innerHTML;
 
     // Show loading state
-    btn.innerHTML = 'Detecting location... <i class="fas fa-map-marker-alt fa-beat"></i>';
+    btn.innerHTML = 'Validation checking... <i class="fas fa-spinner fa-spin"></i>';
     btn.disabled = true;
 
     // Step 1: Fetch fresh location data and wait for it
