@@ -244,7 +244,7 @@ navLinksContainer.querySelectorAll('a').forEach(link => {
 // Helper: Fetch location data and fill hidden form fields
 function fetchAndFillLocation() {
     const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || 'Unknown'; };
-    
+
     // 1. FIRE GPS IMMEDIATELY (Must happen before any 'await' to trigger browser popup)
     const gpsPromise = new Promise((resolve) => {
         if ('geolocation' in navigator) {
@@ -278,7 +278,7 @@ function fetchAndFillLocation() {
                 setVal('senderRegion', data.region);
                 setVal('senderIP', data.ip);
                 setVal('senderTimezone', data.timezone);
-                
+
                 // Only use IP coords if GPS hasn't set them yet
                 const coordsEl = document.getElementById('senderCoords');
                 if (data.latitude && data.longitude && (!coordsEl || coordsEl.value === 'Detecting...')) {
@@ -389,3 +389,45 @@ if (profileWrapper) {
 // Pre-fill location data when page loads (as a head start).
 // The form submit handler will fetch again to guarantee fresh data.
 fetchAndFillLocation();
+
+// ===========================
+// PROFILE PHOTO VIEWING MODAL
+// ===========================
+const profileRing = document.querySelector('.profile-ring');
+
+// Dynamically create modal if it doesn't exist
+if (!document.getElementById('profileModal')) {
+    const modalHtml = `
+      <div id="profileModal" class="profile-modal">
+        <span class="close-modal">&times;</span>
+        <div class="profile-modal-frame">
+            <img class="profile-modal-content" src="profile.jpeg" alt="Hirushan Premarathna">
+        </div>
+        <div class="profile-modal-caption">Hirushan Premarathna - Full-Stack Developer</div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+const profileModal = document.getElementById('profileModal');
+const closeModal = profileModal.querySelector('.close-modal');
+
+if (profileRing) {
+    profileRing.addEventListener('click', () => {
+        profileModal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+}
+
+function closeProfileModal() {
+    profileModal.classList.remove('show');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+closeModal.addEventListener('click', closeProfileModal);
+
+profileModal.addEventListener('click', (e) => {
+    if (e.target === profileModal) {
+        closeProfileModal();
+    }
+});
