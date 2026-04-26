@@ -55,6 +55,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden; /* Prevent horizontal scroll at root level */
+  -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling on iOS */
 }
 
 body {
@@ -63,6 +65,9 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 /* ===========================
@@ -457,6 +462,7 @@ body::after {
   align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
+  overflow: hidden; /* Clip orbit ring so it doesn't bleed outside */
 }
 
 .about-image-wrapper {
@@ -464,10 +470,11 @@ body::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Extra room for orbiting icons */
   padding: 80px;
   align-self: start;
   margin-top: -100px;
+  overflow: hidden; /* Clip any orbit ring overflow */
+  /* On mobile this gets overridden in media queries */
 }
 
 /* ── Outer spinning gradient ring ── */
@@ -1735,6 +1742,25 @@ body::after {
 }
 
 /* ===========================
+   GLOBAL OVERFLOW GUARD
+   =========================== */
+/* Prevent ANY element from causing horizontal overflow */
+* {
+  max-width: 100%;
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Canvas (particle network) must fill hero — override max-width */
+#particleCanvas {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* ===========================
    RESPONSIVE
    =========================== */
 
@@ -1744,6 +1770,7 @@ body::after {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 3rem;
+    overflow: visible;
   }
 
   .about-image-wrapper {
