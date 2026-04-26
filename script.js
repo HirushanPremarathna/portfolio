@@ -216,51 +216,55 @@ navLinksContainer.querySelectorAll('a').forEach(link => {
 // ===========================
 
 // Helper: Fetch location data and fill hidden form fields
-async function fetchAndFillLocation() {
+function fetchAndFillLocation() {
     const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || 'Unknown'; };
     
-    // 1. Get approximate IP-based location as a fast fallback
-    try {
-        const res = await fetch('https://ipapi.co/json/');
-        const data = await res.json();
-        if (data && !data.error) {
-            setVal('senderCity', data.city);
-            setVal('senderCountry', data.country_name);
-            setVal('senderRegion', data.region);
-            setVal('senderIP', data.ip);
-            setVal('senderTimezone', data.timezone);
-            if (data.latitude && data.longitude) {
-                setVal('senderCoords', `${data.latitude}, ${data.longitude} (IP Approximate)`);
-                setVal('senderMapLink', `https://www.google.com/maps?q=${data.latitude},${data.longitude}`);
-            }
-        }
-    } catch (e) {
-        console.log("IP location failed", e);
-    }
-
-    // 2. Try to get highly accurate GPS location directly from the device
-    if ('geolocation' in navigator) {
-        return new Promise((resolve) => {
+    // 1. FIRE GPS IMMEDIATELY (Must happen before any 'await' to trigger browser popup)
+    const gpsPromise = new Promise((resolve) => {
+        if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    // Success! Overwrite map link with exact GPS coordinates
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
                     const accuracy = Math.round(position.coords.accuracy);
-
                     setVal('senderCoords', `${lat.toFixed(6)}, ${lng.toFixed(6)} (Exact GPS, ±${accuracy}m)`);
                     setVal('senderMapLink', `https://www.google.com/maps?q=${lat},${lng}`);
-                    resolve(); // Proceed with sending form
+                    resolve(true);
                 },
                 (error) => {
                     console.log("GPS denied or failed", error);
-                    resolve(); // Proceed with sending form using IP fallback
+                    resolve(false);
                 },
-                { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 } // Wait max 8 seconds for user to click Allow
+                { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
             );
-        });
-    }
-    return Promise.resolve();
+        } else {
+            resolve(false);
+        }
+    });
+
+    // 2. Fetch IP location at the same time
+    const ipPromise = fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+            if (data && !data.error) {
+                setVal('senderCity', data.city);
+                setVal('senderCountry', data.country_name);
+                setVal('senderRegion', data.region);
+                setVal('senderIP', data.ip);
+                setVal('senderTimezone', data.timezone);
+                
+                // Only use IP coords if GPS hasn't set them yet
+                const coordsEl = document.getElementById('senderCoords');
+                if (data.latitude && data.longitude && (!coordsEl || coordsEl.value === 'Detecting...')) {
+                    setVal('senderCoords', `${data.latitude}, ${data.longitude} (IP Approximate)`);
+                    setVal('senderMapLink', `https://www.google.com/maps?q=${data.latitude},${data.longitude}`);
+                }
+            }
+        })
+        .catch(e => console.log("IP location failed", e));
+
+    // Wait for both to complete before sending the email
+    return Promise.all([gpsPromise, ipPromise]);
 }
 
 document.getElementById('contactForm').addEventListener('submit', async function (e) {
