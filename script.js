@@ -2,11 +2,16 @@
 // PM NETWORK GRAPH CANVAS
 // ===========================
 const canvas = document.getElementById('particleCanvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d', { willReadFrequently: false });
 
 let nodes = [];
-const NODE_COUNT = window.innerWidth < 768 ? 20 : 55;
-const MAX_DIST = 160;
+// Fewer particles on mobile = buttery smooth scrolling
+const isMobile = window.innerWidth < 768;
+const NODE_COUNT = isMobile ? 12 : 55;
+const MAX_DIST = isMobile ? 120 : 160;
+
+let animationId = null;
+let canvasVisible = true;
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -19,9 +24,9 @@ function createNode() {
     return {
         x: randomBetween(0, canvas.width),
         y: randomBetween(0, canvas.height),
-        vx: randomBetween(-0.35, 0.35),
-        vy: randomBetween(-0.25, 0.25),
-        radius: randomBetween(2, 4.5),
+        vx: randomBetween(-0.3, 0.3),
+        vy: randomBetween(-0.2, 0.2),
+        radius: randomBetween(2, isMobile ? 3 : 4.5),
         isAccent: Math.random() < 0.22,
         pulse: randomBetween(0, Math.PI * 2),
         pulseSpeed: randomBetween(0.015, 0.04),
@@ -34,6 +39,12 @@ function initNodes() {
 }
 
 function drawNetwork() {
+    // Pause animation when canvas is not visible — saves CPU during scroll
+    if (!canvasVisible) {
+        animationId = requestAnimationFrame(drawNetwork);
+        return;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw connection lines between nearby nodes
@@ -58,11 +69,10 @@ function drawNetwork() {
     for (const n of nodes) {
         n.pulse += n.pulseSpeed;
         const glowR = n.radius + Math.sin(n.pulse) * 1.5;
-        // Sky cyan for most nodes, indigo/violet for ~22%
         const [r, g, b] = n.isAccent ? [129, 140, 248] : [14, 165, 233];
 
-        // Glow halo (Performance optimization: only on desktop)
-        if (window.innerWidth >= 768) {
+        // Glow halo — desktop only for performance
+        if (!isMobile) {
             const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, Math.max(1, glowR * 3.5));
             grd.addColorStop(0, `rgba(${r},${g},${b},0.22)`);
             grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
@@ -87,13 +97,24 @@ function drawNetwork() {
         if (n.y > canvas.height + 20) n.y = -20;
     }
 
-    requestAnimationFrame(drawNetwork);
+    animationId = requestAnimationFrame(drawNetwork);
 }
+
+// Pause canvas rendering when hero is scrolled out of view
+const heroObserver = new IntersectionObserver((entries) => {
+    canvasVisible = entries[0].isIntersecting;
+}, { threshold: 0 });
+heroObserver.observe(document.getElementById('home'));
 
 resizeCanvas();
 initNodes();
 drawNetwork();
-window.addEventListener('resize', () => { resizeCanvas(); initNodes(); });
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { resizeCanvas(); initNodes(); }, 150);
+}, { passive: true });
 
 // ===========================
 // TYPED TEXT EFFECT
@@ -140,13 +161,18 @@ const revealElements = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
+            // Small stagger but only up to 3 items max delay — prevents feeling slow
+            const delay = Math.min(i * 60, 180);
             setTimeout(() => {
                 entry.target.classList.add('visible');
-            }, i * 80);
+            }, delay);
             revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12 });
+}, {
+    threshold: 0.08,             // Trigger earlier — feels more responsive
+    rootMargin: '0px 0px -40px 0px'  // Trigger just before element enters screen
+});
 
 revealElements.forEach(el => revealObserver.observe(el));
 
