@@ -297,3 +297,62 @@ if (profileWrapper) {
         setTimeout(() => { profileWrapper.style.transform = ''; }, 400);
     });
 }
+
+// ===========================
+// SENDER LOCATION CAPTURE
+// ===========================
+// Automatically captures the visitor's location when the page loads.
+// This data is sent along with the contact form message.
+
+(function captureVisitorLocation() {
+    // 1. IP-based geolocation (city, country, region, timezone)
+    fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+            if (data && !data.error) {
+                const cityEl = document.getElementById('senderCity');
+                const countryEl = document.getElementById('senderCountry');
+                const regionEl = document.getElementById('senderRegion');
+                const ipEl = document.getElementById('senderIP');
+                const timezoneEl = document.getElementById('senderTimezone');
+                const coordsEl = document.getElementById('senderCoords');
+                const mapEl = document.getElementById('senderMapLink');
+
+                if (cityEl) cityEl.value = data.city || 'Unknown';
+                if (countryEl) countryEl.value = data.country_name || 'Unknown';
+                if (regionEl) regionEl.value = data.region || 'Unknown';
+                if (ipEl) ipEl.value = data.ip || 'Unknown';
+                if (timezoneEl) timezoneEl.value = data.timezone || 'Unknown';
+
+                // Use IP-based lat/long as fallback coordinates
+                if (data.latitude && data.longitude) {
+                    if (coordsEl) coordsEl.value = `${data.latitude}, ${data.longitude} (IP-based)`;
+                    if (mapEl) mapEl.value = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
+                }
+            }
+        })
+        .catch(() => {
+            // Silently fail — location fields will keep "Detecting..." values
+        });
+
+    // 2. Browser GPS (precise location — requires user permission)
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                const accuracy = Math.round(position.coords.accuracy);
+
+                const coordsEl = document.getElementById('senderCoords');
+                const mapEl = document.getElementById('senderMapLink');
+
+                if (coordsEl) coordsEl.value = `${lat.toFixed(6)}, ${lng.toFixed(6)} (GPS, ±${accuracy}m)`;
+                if (mapEl) mapEl.value = `https://www.google.com/maps?q=${lat},${lng}`;
+            },
+            () => {
+                // User denied permission or GPS unavailable — IP-based fallback is already set
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+        );
+    }
+})();
