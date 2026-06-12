@@ -120,7 +120,7 @@ window.addEventListener('resize', () => {
 // TYPED TEXT EFFECT
 // ===========================
 const roles = [
-    'ELECTRONIC SCALE PROGRAMMER & REPAIRER',
+    'Electronic Scale Programmer & Repairer',
     'Undergraduate at RUSL',
     'Machine Learning Researcher',
     'IoT Systems Builder',
