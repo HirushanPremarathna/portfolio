@@ -1829,9 +1829,6 @@ svg {
 
 /* ── Mobile (max 768px) ── */
 @media (max-width: 768px) {
-  p {
-    text-align: justify;
-  }
 
   /* Navbar */
   .nav-links {
@@ -1985,7 +1982,7 @@ svg {
   /* About — text & cards */
   .about-text p {
     font-size: 0.9rem;
-    text-align: justify;
+    text-align: left;
   }
 
   .about-cards {
