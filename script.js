@@ -120,7 +120,7 @@ window.addEventListener('resize', () => {
 // TYPED TEXT EFFECT
 // ===========================
 const roles = [
-    'Full-Stack Developer',
+    'ELECTRONIC SCALE PROGRAMMER & REPAIRER',
     'Undergraduate at RUSL',
     'Machine Learning Researcher',
     'IoT Systems Builder',
@@ -403,7 +403,7 @@ if (!document.getElementById('profileModal')) {
         <div class="profile-modal-frame">
             <img class="profile-modal-content" src="profile.jpeg" alt="Hirushan Premarathna">
         </div>
-        <div class="profile-modal-caption">Hirushan Premarathna - Full-Stack Developer</div>
+        <div class="profile-modal-caption">Hirushan Premarathna - ELECTRONIC SCALE PROGRAMMER & REPAIRER</div>
       </div>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHtml);
